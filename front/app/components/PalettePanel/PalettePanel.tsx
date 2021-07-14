@@ -1,5 +1,5 @@
 import React from "react"
-import styles from './CanvasPanel.module.css'
+import styles from './PalettePanel.module.css'
 
 const CanvasPanel = (props) =>{
   return (
