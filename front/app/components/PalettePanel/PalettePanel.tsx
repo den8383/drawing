@@ -1,13 +1,13 @@
-import React from "react"
+import React from 'react'
 import styles from './PalettePanel.module.css'
+import ColorButton from './ColorButton/ColorButton'
 
-const CanvasPanel = (props) =>{
+const PalettePanel = () =>{
   return (
       <div id={styles.panel}>
-      <p id={styles.position}>{props.x},{props.y}</p>
-      <canvas id={styles.canvas}></canvas>
+      <ColorButton color='red'></ColorButton>
       </div>
       )
 }
 
-export default CanvasPanel
+export default PalettePanel
