@@ -4,7 +4,7 @@ import PalettePanel from '../../components/PalettePanel'
 
 export const Drawing = (): JSX.Element => (
     <div>
-    <CanvasPanel x="0" y="0"></CanvasPanel>
+    <CanvasPanel x='0' y='0'></CanvasPanel>
     <PalettePanel></PalettePanel>
     <p>drawing</p>
     <Link href='/'>root</Link>
