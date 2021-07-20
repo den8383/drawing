@@ -1,12 +1,18 @@
 import React from "react"
-import styles from './ColorButton.module.css'
+import styled from 'styled-components'
 
 const ColorButton = (props) =>{
   return (
-      <div>
-      <button className={styles.red}>{props.color}</button>
-      </div>
-      )
+    <div>
+      <Button color={props.color}>Button</Button>
+    </div>
+  )
 }
+
+const Button = styled.button.attrs(props => ({
+  color:props.color
+}))`
+  color:${props => props.color}
+`
 
 export default ColorButton
