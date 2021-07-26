@@ -9,7 +9,7 @@ const PalettePanel = () =>{
 
   const Palette = styled.div`
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 8 / 3;
     border:solid;
     border-color:aqua;
   `
