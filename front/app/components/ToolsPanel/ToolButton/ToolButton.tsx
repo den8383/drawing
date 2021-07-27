@@ -1,9 +1,12 @@
 import React from "react"
 import styled from 'styled-components'
+import Image from 'next/image'
 
 const ToolButton = (props) =>{
   return (
-    <Button></Button>
+    <Button>
+      <Image src={props.tool}></Image>
+    </Button>
   )
 }
 

@@ -1,12 +1,15 @@
 import React from "react"
 import styled from 'styled-components'
 import ToolButton from './ToolButton'
+import pencil from '../../public/pencil.png'
+import eraser from '../../public/eraser.png'
 
 const ToolsPanel = (props) =>{
+
   return (
       <Palette>
-        <ToolButton></ToolButton>
-        <ToolButton></ToolButton>
+        <ToolButton tool={pencil}></ToolButton>
+        <ToolButton tool={eraser}></ToolButton>
       </Palette>
       )
 }
