@@ -6,10 +6,14 @@ import eraser from '../../public/eraser.png'
 
 const ToolsPanel = (props) =>{
 
+  const toolButtonClick = (toolName) =>{
+    props.toolButtonClick(toolName)
+  }
+
   return (
       <Palette>
-        <ToolButton tool={pencil}></ToolButton>
-        <ToolButton tool={eraser}></ToolButton>
+        <ToolButton onClick={toolButtonClick} tool={pencil} toolName='pencil'></ToolButton>
+        <ToolButton onClick={toolButtonClick} tool={eraser} toolName='eraser'></ToolButton>
       </Palette>
       )
 }

@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const ToolButton = (props) =>{
   return (
-    <Button>
+    <Button onClick={() => props.onClick(props.toolName)}>
       <Image src={props.tool}></Image>
     </Button>
   )
@@ -13,8 +13,6 @@ const ToolButton = (props) =>{
 const Button = styled.button`
   width: 50%;
   aspect-ratio: 1 / 1;
-  border:solid;
-  border-color:black;
 `
 
 
