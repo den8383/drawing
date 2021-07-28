@@ -17,6 +17,7 @@ const Palette = styled.div`
   aspect-ratio: 4 / 3;
   border:solid;
   border-color:aqua;
+  touch-action: none;
 `
 
 const PositionView = styled.p`
