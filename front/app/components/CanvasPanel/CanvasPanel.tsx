@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {useState} from 'react'
 import styled from 'styled-components'
 
@@ -8,7 +8,15 @@ const CanvasPanel = (props) =>{
   const [canvaxClickFlag,setCanvaxClickFlag] = useState(0)
 
   const canvasRef = React.useRef(HTMLCanvasElement | null)
-  const [context, setContext] = React.useState(CanvasRenderingContext2D | null)
+  const paletteRef = React.useRef(HTMLDivElement)
+  useEffect(() => {
+    canvasRef.current.width = paletteRef.current.clientWidth
+    canvasRef.current.height = paletteRef.current.clientWidth *3/4
+  },[])
+  window.addEventListener( 'resize', function() {
+    canvasRef.current.width = paletteRef.current.clientWidth
+    canvasRef.current.height = paletteRef.current.clientWidth *3/4
+  }, false )
 
   const mouseCheck = (evt) =>{
     setPointerX(evt.nativeEvent.offsetX)
@@ -60,15 +68,17 @@ const CanvasPanel = (props) =>{
   const drawEnd = () =>{
     canvasRef.current.getContext('2d').beginPath()
   }
+  const clear = () =>{
+    canvasRef.current.getContext('2d').clearRect(0,0,canvasRef.current.width,canvasRef.current.height)
+  }
 
 
   return (
-    <div onMouseDown={mouseDown} onMouseMove={mouseMove} onMouseUp={mouseUp} onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd}>
-      <Palette>
-        <PositionView>{pointerX},{pointerY},{props.color}</PositionView>
-        <Canvas ref={canvasRef} width="360" height="300"></Canvas>
+      <Palette ref={paletteRef} onMouseDown={mouseDown} onMouseMove={mouseMove} onMouseUp={mouseUp} onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd}>
+        <PositionView>{pointerX},{pointerY},{props.color},{paletteRef.current.offsetWidth},{paletteRef.current.offsetHeight}</PositionView>
+        <Canvas ref={canvasRef}></Canvas>
+        <ClearButton onClick={clear}>aaaa</ClearButton>
       </Palette>
-    </div>
   )
 }
 
@@ -87,6 +97,8 @@ const PositionView = styled.p`
 `
 const Canvas = styled.canvas`
   border:solid;
+`
+const ClearButton = styled.button`
 `
 
 export default CanvasPanel
