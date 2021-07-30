@@ -6,6 +6,7 @@ import ToolsPanel from '../../components/ToolsPanel'
 
 export const Drawing = () =>{
   const [color,setColor] = useState("black")
+  const [weight,setWeight] = useState(4)
   const [toolName,setToolName] = useState("pencil")
 
   const colorButtonClick = (color) =>{
@@ -17,7 +18,7 @@ export const Drawing = () =>{
 
   return (
     <div>
-      <CanvasPanel color={color}></CanvasPanel>
+      <CanvasPanel color={color} weight={weight}></CanvasPanel>
       <PalettePanel colorButtonClick={colorButtonClick} color={color}></PalettePanel>
       <ToolsPanel toolButtonClick={toolButtonClick}></ToolsPanel>
       <span>{color},</span>
