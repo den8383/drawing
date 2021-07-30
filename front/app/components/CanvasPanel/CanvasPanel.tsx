@@ -26,16 +26,16 @@ const CanvasPanel = (props) =>{
   const mouseMove = (evt) =>{
     mouseCheck(evt)
     if(canvaxClickFlag){
-      drawing(pointerX,pointerY,props.weight)
+      toolUsing(pointerX,pointerY,props.weight)
     }
   }
   const mouseDown = () =>{
     setCanvaxClickFlag(1)
-    drawStart()
+    toolStart()
   }
   const mouseUp = () =>{
     setCanvaxClickFlag(0)
-    drawEnd()
+    toolEnd()
   }
 
 
@@ -45,18 +45,44 @@ const CanvasPanel = (props) =>{
   }
   const touchMove = (evt) =>{
     touchCheck(evt)
-    drawing(pointerX,pointerY,props.weight)
+    toolUsing(pointerX,pointerY,props.weight)
   }
 
   const touchStart = (evt) =>{
     setPointerX(evt.touches[0].clientX-evt.touches [0] .target.offsetLeft)
     setPointerY(evt.touches[0].clientY-evt.touches [0] .target.offsetTop)
-    drawStart()
+    toolStart()
   }
   const touchEnd = () =>{
-    drawEnd()
+    toolEnd()
   }
 
+  const toolStart = () =>{
+    if(props.toolName == "pencil"){
+      drawStart()
+    }else if(props.toolName == "eraser"){
+
+    }else{
+      alert("none")
+    }
+  }
+  const toolUsing = (x,y,w) =>{
+    if(props.toolName == "pencil"){
+      drawing(x,y,w)
+    }else if(props.toolName == "eraser"){
+      erase(x,y,w)
+    }else{
+      alert("none")
+    }
+  }
+  const toolEnd = () =>{
+    if(props.toolName == "pencil"){
+      drawEnd()
+    }else if(props.toolName == "eraser"){
+    }else{
+      alert("none")
+    }
+  }
 
   const drawStart = () =>{
     canvasRef.current.getContext('2d').beginPath()
@@ -71,6 +97,9 @@ const CanvasPanel = (props) =>{
   const clear = () =>{
     canvasRef.current.getContext('2d').clearRect(0,0,canvasRef.current.width,canvasRef.current.height)
   }
+  const erase = (x,y,w) =>{
+    canvasRef.current.getContext('2d').clearRect(x-5*w/2,y-5*w/2,5*w,5*w)
+  }
 
 
   return (
@@ -78,6 +107,7 @@ const CanvasPanel = (props) =>{
         <PositionView>{pointerX},{pointerY},{props.color},{paletteRef.current.offsetWidth},{paletteRef.current.offsetHeight}</PositionView>
         <Canvas ref={canvasRef}></Canvas>
         <ClearButton onClick={clear}>aaaa</ClearButton>
+        <p>{props.toolName}</p>
       </Palette>
   )
 }

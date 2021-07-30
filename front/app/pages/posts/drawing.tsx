@@ -18,7 +18,7 @@ export const Drawing = () =>{
 
   return (
     <div>
-      <CanvasPanel color={color} weight={weight}></CanvasPanel>
+      <CanvasPanel color={color} weight={weight} toolName={toolName}></CanvasPanel>
       <PalettePanel colorButtonClick={colorButtonClick} color={color}></PalettePanel>
       <ToolsPanel toolButtonClick={toolButtonClick}></ToolsPanel>
       <span>{color},</span>
