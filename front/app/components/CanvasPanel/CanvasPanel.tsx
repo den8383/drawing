@@ -109,9 +109,9 @@ const CanvasPanel = (props) =>{
   return (
       <Palette ref={paletteRef} onMouseDown={mouseDown} onMouseMove={mouseMove} onMouseUp={mouseUp} onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd}>
         <PositionView>{pointerX},{pointerY},{props.color},{paletteRef.current.offsetWidth},{paletteRef.current.offsetHeight}</PositionView>
-        <Canvas ref={canvasRef}></Canvas>
         <ClearButton onClick={clear}>clear</ClearButton>
         <SaveButton onClick={save}>save</SaveButton>
+        <Canvas ref={canvasRef}></Canvas>
         <p>{props.toolName}</p>
       </Palette>
   )
@@ -134,7 +134,9 @@ const Canvas = styled.canvas`
   border:solid;
 `
 const ClearButton = styled.button`
+  width:calc(100%/3)
 `
 const SaveButton = styled.button`
+  width:calc(100%/3)
 `
 export default CanvasPanel
