@@ -100,13 +100,18 @@ const CanvasPanel = (props) =>{
   const erase = (x,y,w) =>{
     canvasRef.current.getContext('2d').clearRect(x-5*w/2,y-5*w/2,5*w,5*w)
   }
+  const imageRef = React.useRef(HTMLImageElement)
+  const save = () =>{
+    props.saveButtonClick(canvasRef.current.toDataURL())
+  }
 
 
   return (
       <Palette ref={paletteRef} onMouseDown={mouseDown} onMouseMove={mouseMove} onMouseUp={mouseUp} onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd}>
         <PositionView>{pointerX},{pointerY},{props.color},{paletteRef.current.offsetWidth},{paletteRef.current.offsetHeight}</PositionView>
         <Canvas ref={canvasRef}></Canvas>
-        <ClearButton onClick={clear}>aaaa</ClearButton>
+        <ClearButton onClick={clear}>clear</ClearButton>
+        <SaveButton onClick={save}>save</SaveButton>
         <p>{props.toolName}</p>
       </Palette>
   )
@@ -130,5 +135,6 @@ const Canvas = styled.canvas`
 `
 const ClearButton = styled.button`
 `
-
+const SaveButton = styled.button`
+`
 export default CanvasPanel
